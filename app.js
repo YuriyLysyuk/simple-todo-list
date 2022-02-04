@@ -28,3 +28,8 @@ const tasksData = [
       'seo, ссылочная, контентная на основе анализа конкурентов и семантики.',
   },
 ];
+
+// Added self-calling function to protect app variables and functions
+(function (tasksData) {
+
+})(tasksData);
