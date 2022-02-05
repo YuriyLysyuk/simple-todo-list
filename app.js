@@ -132,4 +132,22 @@ const tasksData = [
 
     return li;
   }
+  // Generate new unique task id
+  function getNewId() {
+    // Function for generate four chars
+    const s4 = () => {
+      return Math.floor((1 + Math.random()) * 10000).toString(16);
+    };
+    let newId = '';
+
+    // Generate id...
+    do {
+      // ...of format xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+      newId = `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+      // ...while it already exist
+    } while (tasks.hasOwnProperty(newId));
+
+    return newId;
+  }
+
 })(tasksData);
