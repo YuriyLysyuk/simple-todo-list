@@ -35,10 +35,10 @@ const tasksData = [
   const tasksContainer = document.querySelector('.task-list .list-group');
 
   // Print all initial tasks
-  tasksContainer.appendChild(getAllTasksHtml(tasksData));
+  printAllTasks(tasksData);
 
   // Get all tasks html
-  function getAllTasksHtml(tasksData) {
+  function printAllTasks(tasksData) {
     // Return undefined if tasks data not received
     if (!tasksData) {
       console.error('You need add array with tasks data');
@@ -56,7 +56,7 @@ const tasksData = [
       fragment.appendChild(li);
     });
 
-    return fragment;
+    tasksContainer.appendChild(fragment);
   }
 
   // Get html for one task
