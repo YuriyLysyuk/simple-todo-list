@@ -44,13 +44,22 @@ const tasksData = [
   const addNewTaskDescription = addNewTaskForm.elements['description'];
 
   // Print all initial tasks
-  printAllTasks(tasksData);
+  printAllTasks(tasks);
 
-  // Get all tasks html
-  function printAllTasks(tasksData) {
+  // Print all tasks
+  function printAllTasks(tasks) {
     // Return undefined if tasks data not received
-    if (!tasksData) {
-      console.error('You need add array with tasks data');
+    if (!tasks) {
+      console.error('You need add object with tasks data');
+      return;
+    }
+
+    const allTasksHtml = getAllTasksHtml(tasks);
+
+    tasksContainer.innerHTML = '';
+    tasksContainer.appendChild(allTasksHtml);
+  }
+
       return;
     }
 
