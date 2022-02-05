@@ -31,8 +31,11 @@ const tasksData = [
 
 // Added self-calling function to protect app variables and functions
 (function (tasksData) {
-  // Tasks container
+  // UI elements
   const tasksContainer = document.querySelector('.task-list .list-group');
+  const addNewTaskForm = document.forms['addNewTask'];
+  const addNewTaskTitle = addNewTaskForm.elements['title'];
+  const addNewTaskDescription = addNewTaskForm.elements['description'];
 
   // Print all initial tasks
   printAllTasks(tasksData);
