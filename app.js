@@ -109,6 +109,8 @@ const tasksData = [
       'align-items-start',
       'gap-2'
     );
+    // Add id to task li dataset
+    li.dataset['id'] = _id;
 
     // Create task body div, add class and text
     const taskBody = document.createElement('div');
@@ -132,8 +134,6 @@ const tasksData = [
     // Add markup to li
     li.appendChild(taskBody);
     li.appendChild(btn);
-    // Add id to task li dataset
-    li.dataset['id'] = _id;
 
     return li;
   }
