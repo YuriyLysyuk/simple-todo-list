@@ -46,6 +46,9 @@ const tasksData = [
   // Print all initial tasks
   printAllTasks(tasks);
 
+  // Add new task form submit handler
+  addNewTaskForm.addEventListener('submit', addNewTaskHandler);
+
   // Print all tasks
   function printAllTasks(tasks) {
     // Return undefined if tasks data not received
@@ -132,6 +135,35 @@ const tasksData = [
 
     return li;
   }
+
+  // Add new task function
+  function addNewTaskHandler(e) {
+    e.preventDefault();
+
+    // Get title value
+    const title = addNewTaskTitle.value || '';
+
+    // Check title is not empty
+    if (title === '') {
+      alert('Enter task title');
+      return;
+    }
+
+    // Get description value
+    const description = addNewTaskDescription.value || '';
+
+    const task = createNewTask(title, description);
+
+    // Save new task object to all tasks object
+    saveTask(task);
+
+    // Print task to tasks container
+    printTask(task);
+
+    // Clear form inputs
+    addNewTaskForm.reset();
+  }
+
   // Create new task
   function createNewTask(title, description) {
     if (!title) {
