@@ -31,6 +31,12 @@ const tasksData = [
 
 // Added self-calling function to protect app variables and functions
 (function (tasksData) {
+  // Generate object of tasks objects
+  const tasks = tasksData.reduce((acc, task) => {
+    acc[task._id] = task;
+    return acc;
+  }, {});
+
   // UI elements
   const tasksContainer = document.querySelector('.task-list .list-group');
   const addNewTaskForm = document.forms['addNewTask'];
