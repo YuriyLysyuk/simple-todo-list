@@ -98,7 +98,7 @@ const tasksData = [
   }
 
   // Get html for one task
-  function getTaskHtml({ title, description } = {}) {
+  function getTaskHtml({ _id, title, description } = {}) {
     // Create li element
     const li = document.createElement('li');
     // Add li classes
@@ -132,6 +132,8 @@ const tasksData = [
     // Add markup to li
     li.appendChild(taskBody);
     li.appendChild(btn);
+    // Add id to task li dataset
+    li.dataset['id'] = _id;
 
     return li;
   }
