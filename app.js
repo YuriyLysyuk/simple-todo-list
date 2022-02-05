@@ -150,4 +150,13 @@ const tasksData = [
     return newId;
   }
 
+  // Save new task object to all tasks object
+  function saveTask(task) {
+    if (!task) {
+      console.error('Call function with task object');
+      return;
+    }
+
+    tasks[task._id] = task;
+  }
 })(tasksData);
