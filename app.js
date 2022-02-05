@@ -83,7 +83,7 @@ const tasksData = [
   }
 
   // Get html for one task
-  function getOneTaskHtml({ title, description } = {}) {
+  function getTaskHtml({ title, description } = {}) {
     // Create li element
     const li = document.createElement('li');
     // Add li classes
