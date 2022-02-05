@@ -60,6 +60,11 @@ const tasksData = [
     tasksContainer.appendChild(allTasksHtml);
   }
 
+  // Get html for all tasks
+  function getAllTasksHtml(tasks) {
+    // Return undefined if tasks data not received
+    if (!tasks) {
+      console.error('You need add object with tasks data');
       return;
     }
 
@@ -67,14 +72,14 @@ const tasksData = [
     const fragment = document.createDocumentFragment();
 
     // Get html markup for all tasks
-    tasksData.forEach((task) => {
+    Object.values(tasks).forEach((task) => {
       // Create html for one task
-      const li = getOneTaskHtml(task);
+      const li = getTaskHtml(task);
       // Append one task to fragment
       fragment.appendChild(li);
     });
 
-    tasksContainer.appendChild(fragment);
+    return fragment;
   }
 
   // Get html for one task
