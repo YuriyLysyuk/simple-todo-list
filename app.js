@@ -154,9 +154,6 @@ const tasksData = [
 
     const task = createNewTask(title, description);
 
-    // Save new task object to all tasks object
-    saveTask(task);
-
     // Print task to tasks container
     printTask(task);
 
@@ -176,6 +173,9 @@ const tasksData = [
       title,
       description,
     };
+
+    // Save new task object to all tasks object
+    saveTask(task);
 
     return task;
   }
