@@ -132,6 +132,22 @@ const tasksData = [
 
     return li;
   }
+  // Create new task
+  function createNewTask(title, description) {
+    if (!title) {
+      console.error('Set task title');
+      return;
+    }
+
+    const task = {
+      _id: getNewId(),
+      title,
+      description,
+    };
+
+    return task;
+  }
+
   // Generate new unique task id
   function getNewId() {
     // Function for generate four chars
