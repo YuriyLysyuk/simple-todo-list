@@ -60,6 +60,18 @@ const tasksData = [
     tasksContainer.appendChild(allTasksHtml);
   }
 
+  // Print one task
+  function printTask(task) {
+    // Return undefined if task data not received
+    if (!task) {
+      console.error('You need add object with task data');
+      return;
+    }
+
+    const taskHtml = getTaskHtml(task);
+    tasksContainer.insertAdjacentElement('afterbegin', taskHtml);
+  }
+
   // Get html for all tasks
   function getAllTasksHtml(tasks) {
     // Return undefined if tasks data not received
