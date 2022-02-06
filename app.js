@@ -49,6 +49,9 @@ const tasksData = [
   // Add new task form submit handler
   addNewTaskForm.addEventListener('submit', addNewTaskHandler);
 
+  // Add remove task handler
+  tasksContainer.addEventListener('click', removeTaskHandler);
+
   // Print all tasks
   function printAllTasks(tasks) {
     // Return undefined if tasks data not received
@@ -129,6 +132,7 @@ const tasksData = [
     const btn = document.createElement('button');
     btn.classList.add('btn', 'btn-danger', 'btn-sm', 'align-self-center');
     btn.setAttribute('type', 'button');
+    btn.dataset['action'] = 'deleteTask';
     btn.insertAdjacentHTML('afterbegin', 'Delete&nbsp;task');
 
     // Add markup to li
@@ -173,6 +177,27 @@ const tasksData = [
 
     // Clear form inputs
     addNewTaskForm.reset();
+  }
+
+  // Remove task handler
+  function removeTaskHandler(e) {
+    e.preventDefault();
+
+    // If event target is delete button click
+    if (
+      e.target.dataset.hasOwnProperty('action') &&
+      e.target.dataset.action === 'deleteTask'
+    ) {
+      const taskElement = e.target.closest('li.list-group-item');
+      // Get task id
+      const _id = getTaskIdFromElement(taskElement);
+
+      // If remove task from tasks object
+      if (removeTask(_id)) {
+        // Remove task from DOM
+        removeTaskHtml(_id);
+      }
+    }
   }
 
   // Create new task
