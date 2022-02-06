@@ -209,4 +209,14 @@ const tasksData = [
 
     tasks[task._id] = task;
   }
+  // Get task id from element
+  function getTaskIdFromElement(taskElement) {
+    // Check el is Element
+    if (!(taskElement instanceof HTMLElement)) {
+      console.error('El must be a HTMLElement');
+      return;
+    }
+
+    return taskElement.dataset.id || '';
+  }
 })(tasksData);
