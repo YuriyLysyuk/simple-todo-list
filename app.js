@@ -192,11 +192,8 @@ const tasksData = [
       // Get task id
       const _id = getTaskIdFromElement(taskElement);
 
-      // If remove task from tasks object
-      if (removeTask(_id)) {
-        // Remove task from DOM
-        removeTaskHtml(_id);
-      }
+      // Remove task from object and DOM
+      removeTask(_id);
     }
   }
 
@@ -255,7 +252,14 @@ const tasksData = [
       return;
     }
 
-    return delete tasks[_id];
+    // Confirm to delete task
+    if (confirm('Do you want to delete this task?')) {
+      // If remove task from tasks object
+      if (delete tasks[_id]) {
+        // Remove task from DOM
+        removeTaskHtml(_id);
+      }
+    }
   }
 
   // Get task id from element
