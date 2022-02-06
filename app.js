@@ -252,8 +252,10 @@ const tasksData = [
       return;
     }
 
+    const title = tasks[_id].title;
+
     // Confirm to delete task
-    if (confirm('Do you want to delete this task?')) {
+    if (confirm(`Do you want to delete this task: ${title}?`)) {
       // If remove task from tasks object
       if (delete tasks[_id]) {
         // Remove task from DOM
