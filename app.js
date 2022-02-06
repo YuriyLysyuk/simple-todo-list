@@ -138,6 +138,18 @@ const tasksData = [
     return li;
   }
 
+  // Remove task element from DOM
+  function removeTaskHtml(_id) {
+    // Return undefined if _id not received
+    if (!_id) {
+      console.error('The _id parameter is expected');
+      return;
+    }
+
+    const taskElement = document.querySelector(`[data-id="${_id}"]`);
+    taskElement.remove();
+  }
+
   // Add new task function
   function addNewTaskHandler(e) {
     e.preventDefault();
