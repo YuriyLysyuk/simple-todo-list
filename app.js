@@ -209,6 +209,18 @@ const tasksData = [
 
     tasks[task._id] = task;
   }
+
+  // Remove task from object
+  function removeTask(_id) {
+    // Return undefined if _id not received
+    if (!_id) {
+      console.error('The _id parameter is expected');
+      return;
+    }
+
+    return delete tasks[_id];
+  }
+
   // Get task id from element
   function getTaskIdFromElement(taskElement) {
     // Check el is Element
