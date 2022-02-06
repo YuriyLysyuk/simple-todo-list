@@ -49,8 +49,8 @@ const tasksData = [
   // Add new task form submit handler
   addNewTaskForm.addEventListener('submit', addNewTaskHandler);
 
-  // Add remove task handler
-  tasksContainer.addEventListener('click', removeTaskHandler);
+  // Add delete task handler
+  tasksContainer.addEventListener('click', deleteTaskHandler);
 
   // Print all tasks
   function printAllTasks(tasks) {
@@ -142,8 +142,8 @@ const tasksData = [
     return li;
   }
 
-  // Remove task element from DOM
-  function removeTaskHtml(_id) {
+  // Delete task element from DOM
+  function deleteTaskHtml(_id) {
     // Return undefined if _id not received
     if (!_id) {
       console.error('The _id parameter is expected');
@@ -179,8 +179,8 @@ const tasksData = [
     addNewTaskForm.reset();
   }
 
-  // Remove task handler
-  function removeTaskHandler(e) {
+  // Delete task handler
+  function deleteTaskHandler(e) {
     e.preventDefault();
 
     // If event target is delete button click
@@ -192,8 +192,8 @@ const tasksData = [
       // Get task id
       const _id = getTaskIdFromElement(taskElement);
 
-      // Remove task from object and DOM
-      removeTask(_id);
+      // Delete task from object and DOM
+      deleteTask(_id);
     }
   }
 
@@ -244,8 +244,8 @@ const tasksData = [
     tasks[task._id] = task;
   }
 
-  // Remove task from object
-  function removeTask(_id) {
+  // Delete task from object
+  function deleteTask(_id) {
     // Return undefined if _id not received
     if (!_id) {
       console.error('The _id parameter is expected');
@@ -257,7 +257,7 @@ const tasksData = [
       // If remove task from tasks object
       if (delete tasks[_id]) {
         // Remove task from DOM
-        removeTaskHtml(_id);
+        deleteTaskHtml(_id);
       }
     }
   }
