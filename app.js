@@ -144,12 +144,12 @@ const tasksData = [
     btnGroup.setAttribute('role', 'group');
     btnGroup.setAttribute('aria-label', 'Task management');
 
-    // Create complite button
-    const btnComplite = document.createElement('button');
-    btnComplite.classList.add('btn', 'btn-success');
-    btnComplite.setAttribute('type', 'button');
-    btnComplite.dataset['action'] = 'complite';
-    btnComplite.insertAdjacentHTML(
+    // Create complete button
+    const btnComplete = document.createElement('button');
+    btnComplete.classList.add('btn', 'btn-success');
+    btnComplete.setAttribute('type', 'button');
+    btnComplete.dataset['action'] = 'complete';
+    btnComplete.insertAdjacentHTML(
       'afterbegin',
       '<i class="fas fa-check"></i>'
     );
@@ -162,7 +162,7 @@ const tasksData = [
     btnDelete.insertAdjacentHTML('afterbegin', '<i class="fas fa-times"></i>');
 
     // Add buttons to btn group
-    btnGroup.appendChild(btnComplite);
+    btnGroup.appendChild(btnComplete);
     btnGroup.appendChild(btnDelete);
 
     // Add markup to li
@@ -248,9 +248,10 @@ const tasksData = [
 
       // Switch action
       switch (button.dataset.action) {
-        case 'complite':
           console.log('complite');
+        case 'complete':
           break;
+
         case 'delete':
           // Delete task from object and DOM
           deleteTask(id);
