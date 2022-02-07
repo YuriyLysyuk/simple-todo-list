@@ -50,8 +50,8 @@ const tasksData = [
   // Add new task form submit handler
   addNewTaskForm.addEventListener('submit', addNewTaskHandler);
 
-  // Add delete task handler
-  tasksContainer.addEventListener('click', deleteTaskHandler);
+  // Add task management handler
+  tasksContainer.addEventListener('click', taskManagementHandler);
 
   // Print all tasks
   function printAllTasks(tasks) {
@@ -217,21 +217,28 @@ const tasksData = [
     addNewTaskForm.reset();
   }
 
-  // Delete task handler
-  function deleteTaskHandler(e) {
+  // Task management handler
+  function taskManagementHandler(e) {
     e.preventDefault();
-
-    // If event target is delete button click
-    if (
-      e.target.dataset.hasOwnProperty('action') &&
-      e.target.dataset.action === 'deleteTask'
-    ) {
+    // Find the nearest button that was clicked
+    const button = e.target.closest('button');
+    // If button finded check it has property 'action'
+    if (button && button.dataset.hasOwnProperty('action')) {
+      // Find the nearest task li element
       const taskElement = e.target.closest('li.list-group-item');
       // Get task id
-      const _id = getTaskIdFromElement(taskElement);
+      const id = getTaskIdFromElement(taskElement);
 
-      // Delete task from object and DOM
-      deleteTask(_id);
+      // Switch action
+      switch (button.dataset.action) {
+        case 'complite':
+          console.log('complite');
+          break;
+        case 'delete':
+          // Delete task from object and DOM
+          deleteTask(id);
+          break;
+      }
     }
   }
 
