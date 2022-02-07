@@ -144,6 +144,15 @@ const tasksData = [
     btnGroup.setAttribute('role', 'group');
     btnGroup.setAttribute('aria-label', 'Task management');
 
+    // Create complite button
+    const btnComplite = document.createElement('button');
+    btnComplite.classList.add('btn', 'btn-success');
+    btnComplite.setAttribute('type', 'button');
+    btnComplite.dataset['action'] = 'complite';
+    btnComplite.insertAdjacentHTML(
+      'afterbegin',
+      '<i class="fas fa-check"></i>'
+    );
 
     // Create delete button, add classes and text
     const btnDelete = document.createElement('button');
@@ -153,6 +162,7 @@ const tasksData = [
     btnDelete.insertAdjacentHTML('afterbegin', '<i class="fas fa-times"></i>');
 
     // Add buttons to btn group
+    btnGroup.appendChild(btnComplite);
     btnGroup.appendChild(btnDelete);
 
     // Add markup to li
