@@ -159,6 +159,11 @@ const tasksData = [
     msgContainer.appendChild(alert);
   }
 
+  // Clear alert msg
+  function clearAlert() {
+    msgContainer.innerHTML = '';
+  }
+
   // Delete task element from DOM
   function deleteTaskHtml(_id) {
     // Return undefined if _id not received
