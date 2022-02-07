@@ -139,7 +139,7 @@ const tasksData = [
     btn.classList.add('btn', 'btn-danger', 'btn-sm', 'align-self-center');
     btn.setAttribute('type', 'button');
     btn.dataset['action'] = 'deleteTask';
-    btn.insertAdjacentHTML('afterbegin', 'Delete&nbsp;task');
+    btn.insertAdjacentHTML('afterbegin', '<i class="fas fa-times"></i>');
 
     // Add markup to li
     li.appendChild(taskBody);
