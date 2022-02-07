@@ -266,8 +266,8 @@ const tasksData = [
 
       // Switch action
       switch (button.dataset.action) {
-          console.log('complite');
         case 'complete':
+          completeTask(id);
           break;
 
         case 'delete':
@@ -342,6 +342,21 @@ const tasksData = [
         // Delete task from DOM
         deleteTaskHtml(id);
       }
+    }
+  }
+
+  // Complete task in object
+  function completeTask(id) {
+    // Return undefined if id not received
+    if (!id) {
+      console.error('The id parameter is expected');
+      return;
+    }
+
+    // if task exist
+    if (tasks.hasOwnProperty(id)) {
+      // Complete task
+      tasks[id].isCompleted = true;
     }
   }
 
