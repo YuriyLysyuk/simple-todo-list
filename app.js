@@ -227,6 +227,23 @@ const tasksData = [
     alertIfEmptyTaskList(tasks);
   }
 
+  // Complete task element from DOM
+  function completeTaskHtml(id) {
+    // Return undefined if id not received
+    if (!id) {
+      console.error('The id parameter is expected');
+      return;
+    }
+
+    const taskElement = document.querySelector(`[data-id="${id}"]`);
+    const btnComplete = taskElement.querySelector('[data-action="complete"]');
+
+    // Add complete task classes to task li element
+    taskElement.classList.add(...completeTaskClasses);
+    // Disable the complete button
+    btnComplete.setAttribute('disabled', 'disabled');
+  }
+
   // Add new task function
   function addNewTaskHandler(e) {
     e.preventDefault();
@@ -357,6 +374,8 @@ const tasksData = [
     if (tasks.hasOwnProperty(id)) {
       // Complete task
       tasks[id].isCompleted = true;
+      // Cross out the task if it is completed
+      completeTaskHtml(id);
     }
   }
 
