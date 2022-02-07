@@ -185,14 +185,14 @@ const tasksData = [
   }
 
   // Delete task element from DOM
-  function deleteTaskHtml(_id) {
-    // Return undefined if _id not received
-    if (!_id) {
-      console.error('The _id parameter is expected');
+  function deleteTaskHtml(id) {
+    // Return undefined if id not received
+    if (!id) {
+      console.error('The id parameter is expected');
       return;
     }
 
-    const taskElement = document.querySelector(`[data-id="${_id}"]`);
+    const taskElement = document.querySelector(`[data-id="${id}"]`);
     taskElement.remove();
 
     // Print alert if task list is empty or clear it
@@ -297,21 +297,21 @@ const tasksData = [
   }
 
   // Delete task from object
-  function deleteTask(_id) {
-    // Return undefined if _id not received
-    if (!_id) {
-      console.error('The _id parameter is expected');
+  function deleteTask(id) {
+    // Return undefined if id not received
+    if (!id) {
+      console.error('The id parameter is expected');
       return;
     }
 
-    const title = tasks[_id].title;
+    const title = tasks[id].title;
 
     // Confirm to delete task
     if (confirm(`Do you want to delete this task: ${title}?`)) {
-      // If remove task from tasks object
-      if (delete tasks[_id]) {
-        // Remove task from DOM
-        deleteTaskHtml(_id);
+      // If delete task from tasks object
+      if (delete tasks[id]) {
+        // Delete task from DOM
+        deleteTaskHtml(id);
       }
     }
   }
