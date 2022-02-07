@@ -134,16 +134,23 @@ const tasksData = [
     // Insert title to task body
     taskBody.insertAdjacentElement('afterbegin', taskTitle);
 
+    // Create button group
+    const btnGroup = document.createElement('div');
+    btnGroup.classList.add('btn-group', 'btn-group-sm', 'align-self-center');
+
     // Create delete button, add classes and text
-    const btn = document.createElement('button');
-    btn.classList.add('btn', 'btn-danger', 'btn-sm', 'align-self-center');
-    btn.setAttribute('type', 'button');
-    btn.dataset['action'] = 'deleteTask';
-    btn.insertAdjacentHTML('afterbegin', '<i class="fas fa-times"></i>');
+    const btnDelete = document.createElement('button');
+    btnDelete.classList.add('btn', 'btn-danger', 'align-self-center');
+    btnDelete.setAttribute('type', 'button');
+    btnDelete.dataset['action'] = 'deleteTask';
+    btnDelete.insertAdjacentHTML('afterbegin', '<i class="fas fa-times"></i>');
+
+    // Add buttons to btn group
+    btnGroup.appendChild(btnDelete);
 
     // Add markup to li
     li.appendChild(taskBody);
-    li.appendChild(btn);
+    li.appendChild(btnGroup);
 
     return li;
   }
