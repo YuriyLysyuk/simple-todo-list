@@ -142,6 +142,23 @@ const tasksData = [
     return li;
   }
 
+  // Print alert
+  function printAlert(message = '', type = 'primary') {
+    // Return undefined if message is empty
+    if (!message) return;
+
+    const alert = document.createDocumentFragment();
+    const div = document.createElement('div');
+
+    div.classList.add('alert', `alert-${type}`);
+    div.setAttribute('role', 'alert');
+    div.textContent = message;
+
+    alert.appendChild(div);
+
+    msgContainer.appendChild(alert);
+  }
+
   // Delete task element from DOM
   function deleteTaskHtml(_id) {
     // Return undefined if _id not received
