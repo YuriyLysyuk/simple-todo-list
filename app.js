@@ -149,7 +149,7 @@ const tasksData = [
     const btnDelete = document.createElement('button');
     btnDelete.classList.add('btn', 'btn-danger', 'align-self-center');
     btnDelete.setAttribute('type', 'button');
-    btnDelete.dataset['action'] = 'deleteTask';
+    btnDelete.dataset['action'] = 'delete';
     btnDelete.insertAdjacentHTML('afterbegin', '<i class="fas fa-times"></i>');
 
     // Add buttons to btn group
