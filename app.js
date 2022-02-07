@@ -141,6 +141,9 @@ const tasksData = [
     // Create button group
     const btnGroup = document.createElement('div');
     btnGroup.classList.add('btn-group', 'btn-group-sm', 'align-self-center');
+    btnGroup.setAttribute('role', 'group');
+    btnGroup.setAttribute('aria-label', 'Task management');
+
 
     // Create delete button, add classes and text
     const btnDelete = document.createElement('button');
