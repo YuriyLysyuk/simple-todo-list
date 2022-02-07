@@ -274,4 +274,19 @@ const tasksData = [
 
     return taskElement.dataset.id || '';
   }
+
+  // Refresh task list state
+  function isEmptyTaskList(tasks) {
+    // Check if tasks is empty
+    if (tasks && Object.keys(tasks).length === 0) {
+      // Show alert message
+      printAlert('Well done! You completed all tasks :)', 'success');
+      return true;
+    }
+
+    // Clear alert msg
+    clearAlert();
+
+    return false;
+  }
 })(tasksData);
