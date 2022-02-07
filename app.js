@@ -42,6 +42,7 @@ const tasksData = [
   const addNewTaskForm = document.forms['addNewTask'];
   const addNewTaskTitle = addNewTaskForm.elements['title'];
   const addNewTaskDescription = addNewTaskForm.elements['description'];
+  const msgContainer = document.querySelector('.task-list .msg');
 
   // Print all initial tasks
   printAllTasks(tasks);
@@ -60,10 +61,12 @@ const tasksData = [
       return;
     }
 
-    const allTasksHtml = getAllTasksHtml(tasks);
-
-    tasksContainer.innerHTML = '';
-    tasksContainer.appendChild(allTasksHtml);
+    // Print all tasks if task list is not empty
+    if (!isEmptyTaskList(tasks)) {
+      const allTasksHtml = getAllTasksHtml(tasks);
+      tasksContainer.innerHTML = '';
+      tasksContainer.appendChild(allTasksHtml);
+    }
   }
 
   // Print one task
@@ -73,6 +76,9 @@ const tasksData = [
       console.error('You need add object with task data');
       return;
     }
+
+    // Print message if task list is empty
+    if (isEmptyTaskList(tasks)) return;
 
     const taskHtml = getTaskHtml(task);
     tasksContainer.insertAdjacentElement('afterbegin', taskHtml);
@@ -174,6 +180,9 @@ const tasksData = [
 
     const taskElement = document.querySelector(`[data-id="${_id}"]`);
     taskElement.remove();
+
+    // Print message if task list is empty
+    isEmptyTaskList(tasks);
   }
 
   // Add new task function
