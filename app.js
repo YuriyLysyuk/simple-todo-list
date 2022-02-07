@@ -61,8 +61,8 @@ const tasksData = [
       return;
     }
 
-    // Print all tasks if task list is not empty
-    if (!isEmptyTaskList(tasks)) {
+    // Print all tasks if task list is not empty, else show alert
+    if (!alertIfEmptyTaskList(tasks)) {
       const allTasksHtml = getAllTasksHtml(tasks);
       tasksContainer.innerHTML = '';
       tasksContainer.appendChild(allTasksHtml);
@@ -77,8 +77,8 @@ const tasksData = [
       return;
     }
 
-    // Print message if task list is empty
-    if (isEmptyTaskList(tasks)) return;
+    // Print alert if task list is empty or clear it and return
+    if (alertIfEmptyTaskList(tasks)) return;
 
     const taskHtml = getTaskHtml(task);
     tasksContainer.insertAdjacentElement('afterbegin', taskHtml);
@@ -188,8 +188,8 @@ const tasksData = [
     const taskElement = document.querySelector(`[data-id="${_id}"]`);
     taskElement.remove();
 
-    // Print message if task list is empty
-    isEmptyTaskList(tasks);
+    // Print alert if task list is empty or clear it
+    alertIfEmptyTaskList(tasks);
   }
 
   // Add new task function
@@ -320,8 +320,8 @@ const tasksData = [
     return taskElement.dataset.id || '';
   }
 
-  // Refresh task list state
-  function isEmptyTaskList(tasks) {
+  // Print alert if task list is empty or clear it
+  function alertIfEmptyTaskList(tasks) {
     // Check if tasks is empty
     if (tasks && Object.keys(tasks).length === 0) {
       // Show alert message
