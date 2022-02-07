@@ -48,6 +48,14 @@ const tasksData = [
   const addNewTaskDescription = addNewTaskForm.elements['description'];
   const msgContainer = document.querySelector('.task-list .msg');
 
+  // Class list
+  const completeTaskClasses = [
+    'text-decoration-line-through',
+    'text-muted',
+    'bg-success',
+    'bg-opacity-10',
+  ];
+
   // Print all initial tasks
   printAllTasks(tasks);
 
@@ -111,7 +119,7 @@ const tasksData = [
   }
 
   // Get html for one task
-  function getTaskHtml({ _id, title, description } = {}) {
+  function getTaskHtml({ _id, title, description, isCompleted } = {}) {
     // Create li element
     const li = document.createElement('li');
     // Add li classes
@@ -122,6 +130,12 @@ const tasksData = [
       'align-items-start',
       'gap-2'
     );
+
+    // Cross out the task if it is completed
+    if (isCompleted) {
+      li.classList.add(...completeTaskClasses);
+    }
+
     // Add id to task li dataset
     li.dataset['id'] = _id;
 
@@ -148,6 +162,10 @@ const tasksData = [
     const btnComplete = document.createElement('button');
     btnComplete.classList.add('btn', 'btn-success');
     btnComplete.setAttribute('type', 'button');
+    // Disable the button if the task is completed
+    if (isCompleted) {
+      btnComplete.setAttribute('disabled', 'disabled');
+    }
     btnComplete.dataset['action'] = 'complete';
     btnComplete.insertAdjacentHTML(
       'afterbegin',
