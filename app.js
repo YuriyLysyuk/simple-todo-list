@@ -10,22 +10,26 @@ const tasksData = [
     _id: '40df2e1a-3b88-3a4b-4847-2b7b3eb0446f',
     title: 'Анализ конкурентов',
     description: 'Проанализировать функционал и структуру сайтов, семантику.',
+    isCompleted: true,
   },
   {
     _id: '2f143318-4193-4a4c-29b3-40fe381c31e0',
     title: 'Семантика',
     description: 'Сбор, чистка, кластеризация.',
+    isCompleted: false,
   },
   {
     _id: '34f5471f-4852-272c-3064-339e2e133a38',
     title: 'Проект страницы составить',
     description: 'Продумать архитектуру и перелинковку.',
+    isCompleted: false,
   },
   {
     _id: '4d0c3a02-3486-274a-3c0f-2cce44cc46f8',
     title: 'Составление стратегий',
     description:
       'seo, ссылочная, контентная на основе анализа конкурентов и семантики.',
+    isCompleted: false,
   },
 ];
 
