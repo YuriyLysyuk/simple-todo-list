@@ -273,7 +273,6 @@ const tasksData = [
 
   // Task management handler
   function taskManagementHandler(e) {
-    e.preventDefault();
     // Find the nearest button that was clicked
     const button = e.target.closest('button');
     // If button finded check it has property 'action'
