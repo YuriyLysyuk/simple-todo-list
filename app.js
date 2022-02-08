@@ -42,11 +42,11 @@ const tasksData = [
   }, {});
 
   // UI elements
+  const msgContainer = document.querySelector('.task-list .msg');
   const tasksContainer = document.querySelector('.task-list .list-group');
   const addNewTaskForm = document.forms['addNewTask'];
   const addNewTaskTitle = addNewTaskForm.elements['title'];
   const addNewTaskDescription = addNewTaskForm.elements['description'];
-  const msgContainer = document.querySelector('.task-list .msg');
 
   // Class list
   const completeTaskClasses = [
