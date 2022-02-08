@@ -349,13 +349,23 @@ const tasksData = [
 
     const taskElement = document.querySelector(`[data-id="${id}"]`);
     const btnComplete = taskElement.querySelector('[data-action="complete"]');
+    const uncompletedTaskRadio = document.querySelector(
+      `input#uncompletedTasks`
+    );
 
     // Add complete task classes to task li element
     taskElement.classList.add(...completeTaskClasses);
     // Disable the complete button
     btnComplete.setAttribute('disabled', 'disabled');
-    // Move task element to the end of the task list
-    tasksContainer.appendChild(taskElement);
+
+    // If uncompleted task radio on tasks management toolbar is checked
+    if (uncompletedTaskRadio.checked) {
+      // Render all uncompleted tasks
+      renderAllTasks(tasks, 'showUncompletedTasks');
+    } else {
+      // Move task element to the end of the task list
+      tasksContainer.appendChild(taskElement);
+    }
   }
 
   // Tasks management toolbar handler
