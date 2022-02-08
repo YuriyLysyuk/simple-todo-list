@@ -308,6 +308,7 @@ const tasksData = [
       _id: getNewId(),
       title,
       description,
+      isCompleted: false,
     };
 
     // Save new task object to all tasks object
