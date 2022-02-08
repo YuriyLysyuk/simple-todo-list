@@ -42,6 +42,9 @@ const tasksData = [
   }, {});
 
   // UI elements
+  const tasksManagementToolbar = document.querySelector(
+    '.tasks-management-toolbar'
+  );
   const msgContainer = document.querySelector('.task-list .msg');
   const tasksContainer = document.querySelector('.task-list .list-group');
   const addNewTaskForm = document.forms['addNewTask'];
@@ -56,6 +59,9 @@ const tasksData = [
     'bg-opacity-10',
   ];
 
+  // Render tasks management toolbar
+  renderTasksManagementToolbar();
+
   // Render all initial tasks
   renderAllTasks(tasks);
 
@@ -65,8 +71,81 @@ const tasksData = [
   // Add task management handler
   tasksContainer.addEventListener('click', taskManagementHandler);
 
-  // Print all tasks
-  function printAllTasks(tasks) {
+  // Add tasks management toolbar handler
+  tasksManagementToolbar.addEventListener(
+    'click',
+    tasksManagementToolbarHandler
+  );
+
+  // Render tasks management toolbar
+  function renderTasksManagementToolbar() {
+    const toolbar = document.createDocumentFragment();
+
+    // Create button group
+    const buttonGroup = document.createElement('div');
+    buttonGroup.classList.add('btn-group', 'mb-3');
+    buttonGroup.setAttribute('role', 'group');
+    buttonGroup.setAttribute('aria-label', 'Tasks management toolbar');
+
+    // Create all tasks radio
+    const allTasksRadio = document.createElement('input');
+    allTasksRadio.classList.add('btn-check');
+    allTasksRadio.setAttribute('type', 'radio');
+    allTasksRadio.setAttribute('name', 'tasksToolbar');
+    allTasksRadio.setAttribute('id', 'allTasks');
+    allTasksRadio.setAttribute('autocomplete', 'off');
+    allTasksRadio.setAttribute('checked', 'checked');
+
+    // Create all tasks label
+    const allTasksLabel = document.createElement('label');
+    allTasksLabel.classList.add('btn', 'btn-outline-primary');
+    allTasksLabel.setAttribute('for', 'allTasks');
+    allTasksLabel.setAttribute('data-action', 'showAllTasks');
+    allTasksLabel.textContent = 'Все задачи';
+
+    // Create uncompleted tasks radio
+    const uncompletedTasksRadio = document.createElement('input');
+    uncompletedTasksRadio.classList.add('btn-check');
+    uncompletedTasksRadio.setAttribute('type', 'radio');
+    uncompletedTasksRadio.setAttribute('name', 'tasksToolbar');
+    uncompletedTasksRadio.setAttribute('id', 'uncompletedTasks');
+    uncompletedTasksRadio.setAttribute('autocomplete', 'off');
+
+    // Create uncompleted tasks label
+    const uncompletedlTasksLabel = document.createElement('label');
+    uncompletedlTasksLabel.classList.add('btn', 'btn-outline-primary');
+    uncompletedlTasksLabel.setAttribute('for', 'uncompletedTasks');
+    uncompletedlTasksLabel.setAttribute('data-action', 'showUncompletedTasks');
+    uncompletedlTasksLabel.textContent = 'Незавершенные';
+
+    // Create completed tasks radio
+    const completedTasksRadio = document.createElement('input');
+    completedTasksRadio.classList.add('btn-check');
+    completedTasksRadio.setAttribute('type', 'radio');
+    completedTasksRadio.setAttribute('name', 'tasksToolbar');
+    completedTasksRadio.setAttribute('id', 'сompletedTasks');
+    completedTasksRadio.setAttribute('autocomplete', 'off');
+
+    // Create completed tasks label
+    const completedlTasksLabel = document.createElement('label');
+    completedlTasksLabel.classList.add('btn', 'btn-outline-primary');
+    completedlTasksLabel.setAttribute('for', 'сompletedTasks');
+    completedlTasksLabel.setAttribute('data-action', 'showСompletedTasks');
+    completedlTasksLabel.textContent = 'Завершенные';
+
+    // Append all parts
+    buttonGroup.appendChild(allTasksRadio);
+    buttonGroup.appendChild(allTasksLabel);
+    buttonGroup.appendChild(uncompletedTasksRadio);
+    buttonGroup.appendChild(uncompletedlTasksLabel);
+    buttonGroup.appendChild(completedTasksRadio);
+    buttonGroup.appendChild(completedlTasksLabel);
+    toolbar.appendChild(buttonGroup);
+
+    // Append to DOM
+    tasksManagementToolbar.appendChild(toolbar);
+  }
+
   // Render all tasks
   function renderAllTasks(tasks, show = 'showAllTasks') {
     // Return undefined if tasks data not received
@@ -77,7 +156,7 @@ const tasksData = [
 
     // Render all tasks if task list is not empty, else show alert
     if (!alertIfEmptyTaskList(tasks)) {
-      const allTasksHtml = getAllTasksHtml(tasks);
+      const allTasksHtml = getAllTasksHtml(tasks, show);
       tasksContainer.innerHTML = '';
       tasksContainer.appendChild(allTasksHtml);
     }
@@ -99,7 +178,7 @@ const tasksData = [
   }
 
   // Get html for all tasks
-  function getAllTasksHtml(tasks) {
+  function getAllTasksHtml(tasks, show = 'showAllTasks') {
     // Return undefined if tasks data not received
     if (!tasks) {
       console.error('You need add object with tasks data');
@@ -109,13 +188,34 @@ const tasksData = [
     // Create document fragment for future tasks list
     const fragment = document.createDocumentFragment();
 
-    // Get html markup for all tasks
-    Object.values(tasks).forEach((task) => {
-      // Create html for one task
-      const li = getTaskHtml(task);
-      // Append one task to fragment
-      fragment.appendChild(li);
-    });
+    // Flag for filter tasks
+    let isComplited = null;
+
+    // Switch which task should be shown
+    switch (show) {
+      case 'showAllTasks':
+        isComplited = null;
+        break;
+      case 'showUncompletedTasks':
+        isComplited = false;
+        break;
+
+      case 'showСompletedTasks':
+        isComplited = true;
+        break;
+    }
+
+    // Get html markup for all tasks which filtered
+    Object.values(tasks)
+      .filter(
+        (task) => task.isCompleted === isComplited || isComplited === null
+      )
+      .forEach((task) => {
+        // Create html for one task
+        const li = getTaskHtml(task);
+        // Append one task to fragment
+        fragment.appendChild(li);
+      });
 
     return fragment;
   }
@@ -244,6 +344,26 @@ const tasksData = [
     taskElement.classList.add(...completeTaskClasses);
     // Disable the complete button
     btnComplete.setAttribute('disabled', 'disabled');
+  }
+
+  // Tasks management toolbar handler
+  function tasksManagementToolbarHandler(e) {
+    // Find the nearest button that was clicked
+    const button = e.target.closest('.btn');
+
+    // If button finded check it has property 'action
+    if (button && button.dataset.hasOwnProperty('action')) {
+      // Switch action
+      switch (button.dataset.action) {
+        case 'showAllTasks':
+        case 'showUncompletedTasks':
+        case 'showСompletedTasks':
+          // Render all filtered tasks
+          renderAllTasks(tasks, button.dataset.action);
+          console.log();
+          break;
+      }
+    }
   }
 
   // Add new task function
@@ -407,3 +527,4 @@ const tasksData = [
     return false;
   }
 })(tasksData);
+// renderAlert('Well done! You completed all tasks :)', 'success');
