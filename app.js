@@ -394,15 +394,15 @@ const tasksData = [
 
   // render alert if task list is empty or clear it
   function alertIfEmptyTaskList(tasks) {
+    // Clear alert msg
+    clearAlert();
+
     // Check if tasks is empty
     if (tasks && Object.keys(tasks).length === 0) {
       // Show alert message
       renderAlert('Task list is empty. Add new one.', 'warning');
       return true;
     }
-
-    // Clear alert msg
-    clearAlert();
 
     return false;
   }
