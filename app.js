@@ -56,8 +56,8 @@ const tasksData = [
     'bg-opacity-10',
   ];
 
-  // Print all initial tasks
-  printAllTasks(tasks);
+  // Render all initial tasks
+  renderAllTasks(tasks);
 
   // Add new task form submit handler
   addNewTaskForm.addEventListener('submit', addNewTaskHandler);
@@ -67,13 +67,15 @@ const tasksData = [
 
   // Print all tasks
   function printAllTasks(tasks) {
+  // Render all tasks
+  function renderAllTasks(tasks, show = 'showAllTasks') {
     // Return undefined if tasks data not received
     if (!tasks) {
       console.error('You need add object with tasks data');
       return;
     }
 
-    // Print all tasks if task list is not empty, else show alert
+    // Render all tasks if task list is not empty, else show alert
     if (!alertIfEmptyTaskList(tasks)) {
       const allTasksHtml = getAllTasksHtml(tasks);
       tasksContainer.innerHTML = '';
@@ -81,15 +83,15 @@ const tasksData = [
     }
   }
 
-  // Print one task
-  function printTask(task) {
+  // Render one task
+  function renderTask(task) {
     // Return undefined if task data not received
     if (!task) {
       console.error('You need add object with task data');
       return;
     }
 
-    // Print alert if task list is empty or clear it and return
+    // Render alert if task list is empty or clear it and return
     if (alertIfEmptyTaskList(tasks)) return;
 
     const taskHtml = getTaskHtml(task);
@@ -190,8 +192,8 @@ const tasksData = [
     return li;
   }
 
-  // Print alert
-  function printAlert(message = '', type = 'primary') {
+  // Render alert
+  function renderAlert(message = '', type = 'primary') {
     // Return undefined if message is empty
     if (!message) return;
 
@@ -223,7 +225,7 @@ const tasksData = [
     const taskElement = document.querySelector(`[data-id="${id}"]`);
     taskElement.remove();
 
-    // Print alert if task list is empty or clear it
+    // Render alert if task list is empty or clear it
     alertIfEmptyTaskList(tasks);
   }
 
@@ -262,8 +264,8 @@ const tasksData = [
 
     const task = createNewTask(title, description);
 
-    // Print task to tasks container
-    printTask(task);
+    // Render task to tasks container
+    renderTask(task);
 
     // Clear form inputs
     addNewTaskForm.reset();
@@ -390,12 +392,12 @@ const tasksData = [
     return taskElement.dataset.id || '';
   }
 
-  // Print alert if task list is empty or clear it
+  // render alert if task list is empty or clear it
   function alertIfEmptyTaskList(tasks) {
     // Check if tasks is empty
     if (tasks && Object.keys(tasks).length === 0) {
       // Show alert message
-      printAlert('Well done! You completed all tasks :)', 'success');
+      renderAlert('Task list is empty. Add new one.', 'warning');
       return true;
     }
 
