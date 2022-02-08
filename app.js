@@ -354,6 +354,8 @@ const tasksData = [
     taskElement.classList.add(...completeTaskClasses);
     // Disable the complete button
     btnComplete.setAttribute('disabled', 'disabled');
+    // Move task element to the end of the task list
+    tasksContainer.appendChild(taskElement);
   }
 
   // Tasks management toolbar handler
