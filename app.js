@@ -210,6 +210,16 @@ const tasksData = [
       .filter(
         (task) => task.isCompleted === isComplited || isComplited === null
       )
+      // Sorting by isComplited. Completed tasks are placed at the end of the list
+      .sort((taskA, taskB) => {
+        if (taskA.isCompleted > taskB.isCompleted) {
+          return 1;
+        }
+        if (taskA.isCompleted < taskB.isCompleted) {
+          return -1;
+        }
+        return 0;
+      })
       .forEach((task) => {
         // Create html for one task
         const li = getTaskHtml(task);
