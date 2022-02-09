@@ -392,8 +392,8 @@ const tasksData = [
     // Show the restore button
     btnRestore.classList.remove('d-none');
 
-    // If uncompleted task radio on tasks management toolbar is checked
-    if (uncompletedTaskRadio && uncompletedTaskRadio.checked) {
+    // If uncompleted task button on tasks management toolbar is active
+    if (isActiveTasksManagementButton('showUncompletedTasks')) {
       // Render all uncompleted tasks
       renderAllTasks(tasks, 'showUncompletedTasks');
     } else {
@@ -413,7 +413,6 @@ const tasksData = [
     const taskElement = document.querySelector(`[data-id="${id}"]`);
     const btnComplete = taskElement.querySelector('[data-action="complete"]');
     const btnRestore = taskElement.querySelector('[data-action="restore"]');
-    const completedTaskRadio = document.querySelector(`input#сompletedTasks`);
 
     // Delete complete task classes to task li element
     taskElement.classList.remove(...completeTaskClasses);
@@ -422,8 +421,8 @@ const tasksData = [
     // Hide the restore button
     btnRestore.classList.add('d-none');
 
-    // If completed task radio on tasks management toolbar is checked
-    if (completedTaskRadio && completedTaskRadio.checked) {
+    // If completed task button on tasks management toolbar is active
+    if (isActiveTasksManagementButton('showCompletedTasks')) {
       // Render all completed tasks
       renderAllTasks(tasks, 'showСompletedTasks');
     } else {
