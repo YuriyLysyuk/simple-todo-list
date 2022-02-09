@@ -424,7 +424,7 @@ const tasksData = [
     // If completed task button on tasks management toolbar is active
     if (isActiveTasksManagementButton('showCompletedTasks')) {
       // Render all completed tasks
-      renderAllTasks(tasks, 'showСompletedTasks');
+      renderAllTasks(tasks, 'showCompletedTasks');
     } else {
       // Render all tasks
       renderAllTasks(tasks);
