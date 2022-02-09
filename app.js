@@ -189,26 +189,26 @@ const tasksData = [
     const fragment = document.createDocumentFragment();
 
     // Flag for filter tasks
-    let isComplited = null;
+    let isCompletedFlag = null;
 
     // Switch which task should be shown
     switch (show) {
       case 'showAllTasks':
-        isComplited = null;
+        isCompletedFlag = null;
         break;
       case 'showUncompletedTasks':
-        isComplited = false;
+        isCompletedFlag = false;
         break;
-
-      case 'showСompletedTasks':
-        isComplited = true;
+      case 'showCompletedTasks':
+        isCompletedFlag = true;
         break;
     }
 
     // Get html markup for all tasks which filtered
     Object.values(tasks)
       .filter(
-        (task) => task.isCompleted === isComplited || isComplited === null
+        (task) =>
+          task.isCompleted === isCompletedFlag || isCompletedFlag === null
       )
       // Sorting by isComplited. Completed tasks are placed at the end of the list
       .sort((taskA, taskB) => {
