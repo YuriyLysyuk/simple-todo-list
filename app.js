@@ -152,6 +152,19 @@ const tasksData = [
       const allTasksHtml = getAllTasksHtml(tasks, show);
       tasksContainer.innerHTML = '';
       tasksContainer.appendChild(allTasksHtml);
+
+    // We haven't something to show
+
+    // If uncompleted task button on tasks management toolbar is active
+    if (isActiveTasksManagementButton('showUncompletedTasks')) {
+      renderAlert(...msgWellDone);
+      return;
+    }
+
+    // If completed task button on tasks management toolbar is active
+    if (isActiveTasksManagementButton('showCompletedTasks')) {
+      renderAlert(...msgTimeToDo);
+      return;
     }
   }
 
