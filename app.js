@@ -384,9 +384,6 @@ const tasksData = [
     const taskElement = document.querySelector(`[data-id="${id}"]`);
     const btnComplete = taskElement.querySelector('[data-action="complete"]');
     const btnRestore = taskElement.querySelector('[data-action="restore"]');
-    const uncompletedTaskRadio = document.querySelector(
-      `input#uncompletedTasks`
-    );
 
     // Add complete task classes to task li element
     taskElement.classList.add(...completeTaskClasses);
