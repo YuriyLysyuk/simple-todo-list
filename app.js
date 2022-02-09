@@ -147,8 +147,12 @@ const tasksData = [
       return;
     }
 
-    // Render all tasks if task list is not empty, else show alert
-    if (!alertIfEmptyTaskList(tasks)) {
+    // if task list is empty, show alert and break render
+    if (isEmptyTaskList(tasks)) {
+      renderAlert(...msgEmptyList);
+      return;
+    }
+
     // Clear tasks container
     tasksContainer.innerHTML = '';
 
