@@ -149,8 +149,12 @@ const tasksData = [
 
     // Render all tasks if task list is not empty, else show alert
     if (!alertIfEmptyTaskList(tasks)) {
-      const allTasksHtml = getAllTasksHtml(tasks, show);
-      tasksContainer.innerHTML = '';
+    // Clear tasks container
+    tasksContainer.innerHTML = '';
+
+    // Get all tasks html
+    const allTasksHtml = getAllTasksHtml(tasks, show);
+
       tasksContainer.appendChild(allTasksHtml);
 
     // We haven't something to show
