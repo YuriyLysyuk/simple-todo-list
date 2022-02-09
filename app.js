@@ -666,4 +666,3 @@ const tasksData = [
     return 0;
   }
 })(tasksData);
-// renderAlert('Well done! You completed all tasks :)', 'success');
