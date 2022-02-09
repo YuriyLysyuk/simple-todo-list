@@ -597,16 +597,32 @@ const tasksData = [
     return taskElement.dataset.id || '';
   }
 
-  // render alert if task list is empty or clear it
-  function alertIfEmptyTaskList(tasks) {
-    // Clear alert msg
-    clearAlert();
+  // Is active tasks management button
+  function isActiveTasksManagementButton(button) {
+    // Return undefined if button not received
+    if (!button) {
+      console.error('The button parameter is expected');
+      return;
+    }
 
-    // Check if tasks is empty
-    if (tasks && Object.keys(tasks).length === 0) {
-      // Show alert message
-      renderAlert('Task list is empty. Add new one.', 'warning');
-      return true;
+    let currentButton;
+
+    // Switch radio
+    switch (button) {
+      case 'showAllTasks':
+        currentButton = allTasksButton;
+        break;
+
+      case 'showUncompletedTasks':
+        currentButton = uncompletedTasksButton;
+        break;
+
+      case 'showCompletedTasks':
+        currentButton = completedTasksButton;
+        break;
+    }
+
+    return currentButton && currentButton.classList.contains('active');
   }
 
   // Sort by isCompleted tasks ascending
