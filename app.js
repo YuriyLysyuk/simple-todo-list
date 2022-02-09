@@ -190,8 +190,8 @@ const tasksData = [
       return;
     }
 
-    // Render alert if task list is empty or clear it and return
-    if (alertIfEmptyTaskList(tasks)) return;
+    // Clear the alert, the task list is not longer empty
+    clearAlert();
 
     const taskHtml = getTaskHtml(task);
     tasksContainer.insertAdjacentElement('afterbegin', taskHtml);
