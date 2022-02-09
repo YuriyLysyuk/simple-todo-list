@@ -346,6 +346,8 @@ const tasksData = [
 
     alert.appendChild(div);
 
+    // Clear alert msg
+    clearAlert();
     msgContainer.appendChild(alert);
   }
 
