@@ -59,6 +59,11 @@ const tasksData = [
     'bg-opacity-10',
   ];
 
+  // Alert messages. Format: ['Alert message', 'Bootstrap alert class']
+  const msgEmptyList = ['Task list is empty. Add new one.', 'warning'];
+  const msgTimeToDo = [`Time to do something. Let's go!`, 'warning'];
+  const msgWellDone = ['Well done! You completed all tasks :)', 'success'];
+
   // Render tasks management toolbar
   renderTasksManagementToolbar();
 
