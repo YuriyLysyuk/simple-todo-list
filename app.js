@@ -84,62 +84,34 @@ const tasksData = [
     // Create button group
     const buttonGroup = document.createElement('div');
     buttonGroup.classList.add('btn-group', 'mb-3');
-    buttonGroup.setAttribute('role', 'group');
+    buttonGroup.setAttribute('role', 'toolbar');
     buttonGroup.setAttribute('aria-label', 'Tasks management toolbar');
 
-    // Create all tasks radio
-    const allTasksRadio = document.createElement('input');
-    allTasksRadio.classList.add('btn-check');
-    allTasksRadio.setAttribute('type', 'radio');
-    allTasksRadio.setAttribute('name', 'tasksToolbar');
-    allTasksRadio.setAttribute('id', 'allTasks');
-    allTasksRadio.setAttribute('autocomplete', 'off');
-    allTasksRadio.setAttribute('checked', 'checked');
+    // Create all tasks button
+    const allTasksButton = document.createElement('button');
+    allTasksButton.classList.add('btn', 'btn-outline-primary', 'active');
+    allTasksButton.setAttribute('type', 'button');
+    allTasksButton.setAttribute('data-action', 'showAllTasks');
+    allTasksButton.textContent = 'All tasks';
 
-    // Create all tasks label
-    const allTasksLabel = document.createElement('label');
-    allTasksLabel.classList.add('btn', 'btn-outline-primary');
-    allTasksLabel.setAttribute('for', 'allTasks');
-    allTasksLabel.setAttribute('data-action', 'showAllTasks');
-    allTasksLabel.textContent = 'Все задачи';
+    // Create uncompleted tasks buton
+    const uncompletedTasksButton = document.createElement('button');
+    uncompletedTasksButton.classList.add('btn', 'btn-outline-primary');
+    uncompletedTasksButton.setAttribute('type', 'button');
+    uncompletedTasksButton.setAttribute('data-action', 'showUncompletedTasks');
+    uncompletedTasksButton.textContent = 'Uncompleted';
 
-    // Create uncompleted tasks radio
-    const uncompletedTasksRadio = document.createElement('input');
-    uncompletedTasksRadio.classList.add('btn-check');
-    uncompletedTasksRadio.setAttribute('type', 'radio');
-    uncompletedTasksRadio.setAttribute('name', 'tasksToolbar');
-    uncompletedTasksRadio.setAttribute('id', 'uncompletedTasks');
-    uncompletedTasksRadio.setAttribute('autocomplete', 'off');
-
-    // Create uncompleted tasks label
-    const uncompletedlTasksLabel = document.createElement('label');
-    uncompletedlTasksLabel.classList.add('btn', 'btn-outline-primary');
-    uncompletedlTasksLabel.setAttribute('for', 'uncompletedTasks');
-    uncompletedlTasksLabel.setAttribute('data-action', 'showUncompletedTasks');
-    uncompletedlTasksLabel.textContent = 'Незавершенные';
-
-    // Create completed tasks radio
-    const completedTasksRadio = document.createElement('input');
-    completedTasksRadio.classList.add('btn-check');
-    completedTasksRadio.setAttribute('type', 'radio');
-    completedTasksRadio.setAttribute('name', 'tasksToolbar');
-    completedTasksRadio.setAttribute('id', 'сompletedTasks');
-    completedTasksRadio.setAttribute('autocomplete', 'off');
-
-    // Create completed tasks label
-    const completedlTasksLabel = document.createElement('label');
-    completedlTasksLabel.classList.add('btn', 'btn-outline-primary');
-    completedlTasksLabel.setAttribute('for', 'сompletedTasks');
-    completedlTasksLabel.setAttribute('data-action', 'showСompletedTasks');
-    completedlTasksLabel.textContent = 'Завершенные';
+    // Create completed tasks buton
+    const completedTasksButton = document.createElement('button');
+    completedTasksButton.classList.add('btn', 'btn-outline-primary');
+    completedTasksButton.setAttribute('type', 'button');
+    completedTasksButton.setAttribute('data-action', 'showCompletedTasks');
+    completedTasksButton.textContent = 'Completed';
 
     // Append all parts
-    buttonGroup.appendChild(allTasksRadio);
-    buttonGroup.appendChild(allTasksLabel);
-    buttonGroup.appendChild(uncompletedTasksRadio);
-    buttonGroup.appendChild(uncompletedlTasksLabel);
-    buttonGroup.appendChild(completedTasksRadio);
-    buttonGroup.appendChild(completedlTasksLabel);
+    buttonGroup.appendChild(allTasksButton);
+    buttonGroup.appendChild(uncompletedTasksButton);
+    buttonGroup.appendChild(completedTasksButton);
     toolbar.appendChild(buttonGroup);
 
     // Append to DOM
