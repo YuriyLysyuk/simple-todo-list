@@ -597,6 +597,11 @@ const tasksData = [
     return taskElement.dataset.id || '';
   }
 
+  // Is empty task list
+  function isEmptyTaskList(tasks) {
+    return tasks && Object.keys(tasks).length === 0;
+  }
+
   // Is active tasks management button
   function isActiveTasksManagementButton(button) {
     // Return undefined if button not received
