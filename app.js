@@ -193,8 +193,11 @@ const tasksData = [
     // Clear the alert, the task list is not longer empty
     clearAlert();
 
-    const taskHtml = getTaskHtml(task);
-    tasksContainer.insertAdjacentElement('afterbegin', taskHtml);
+    // If uncompleted task button on tasks management toolbar is active
+    if (!isActiveTasksManagementButton('showCompletedTasks')) {
+      const taskHtml = getTaskHtml(task);
+      tasksContainer.insertAdjacentElement('afterbegin', taskHtml);
+    }
   }
 
   // Get html for all tasks
