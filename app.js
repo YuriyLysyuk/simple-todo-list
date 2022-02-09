@@ -159,7 +159,13 @@ const tasksData = [
     // Get all tasks html
     const allTasksHtml = getAllTasksHtml(tasks, show);
 
+    // If we have something to show, show it and return
+    if (allTasksHtml.childElementCount !== 0) {
       tasksContainer.appendChild(allTasksHtml);
+      // Clear alert
+      clearAlert();
+      return;
+    }
 
     // We haven't something to show
 
