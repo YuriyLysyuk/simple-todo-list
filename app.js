@@ -427,6 +427,7 @@ const tasksData = [
       // Switch action
       switch (button.dataset.action) {
         case 'complete':
+          // Complete a task in an object and DOM
           completeTask(id);
           break;
 
