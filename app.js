@@ -210,16 +210,8 @@ const tasksData = [
         (task) =>
           task.isCompleted === isCompletedFlag || isCompletedFlag === null
       )
-      // Sorting by isComplited. Completed tasks are placed at the end of the list
-      .sort((taskA, taskB) => {
-        if (taskA.isCompleted > taskB.isCompleted) {
-          return 1;
-        }
-        if (taskA.isCompleted < taskB.isCompleted) {
-          return -1;
-        }
-        return 0;
-      })
+      // Sorting by isCompleted. Completed tasks are placed at the end of the list
+      .sort(byIsCompletedAsc)
       .forEach((task) => {
         // Create html for one task
         const li = getTaskHtml(task);
@@ -615,9 +607,18 @@ const tasksData = [
       // Show alert message
       renderAlert('Task list is empty. Add new one.', 'warning');
       return true;
+  }
+
+  // Sort by isCompleted tasks ascending
+  function byIsCompletedAsc(taskA, taskB) {
+    if (taskA.isCompleted > taskB.isCompleted) {
+      return 1;
+    }
+    if (taskA.isCompleted < taskB.isCompleted) {
+      return -1;
     }
 
-    return false;
+    return 0;
   }
 })(tasksData);
 // renderAlert('Well done! You completed all tasks :)', 'success');
