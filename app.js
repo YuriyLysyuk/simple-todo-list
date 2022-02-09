@@ -367,8 +367,10 @@ const tasksData = [
     const taskElement = document.querySelector(`[data-id="${id}"]`);
     taskElement.remove();
 
-    // Render alert if task list is empty or clear it
-    alertIfEmptyTaskList(tasks);
+    // If task list is empty, show alert
+    if (isEmptyTaskList(tasks)) {
+      renderAlert(...msgEmptyList);
+    }
   }
 
   // Complete task element from DOM
