@@ -284,6 +284,20 @@ const tasksData = [
       '<i class="fas fa-check"></i>'
     );
 
+    // Create restore button
+    const btnRestore = document.createElement('button');
+    btnRestore.classList.add('btn', 'btn-warning');
+    btnRestore.setAttribute('type', 'button');
+    // Hide the button if the task is not completed
+    if (!isCompleted) {
+      btnRestore.classList.add('d-none');
+    }
+    btnRestore.dataset['action'] = 'restore';
+    btnRestore.insertAdjacentHTML(
+      'afterbegin',
+      '<i class="fas fa-undo-alt"></i>'
+    );
+
     // Create delete button, add classes and text
     const btnDelete = document.createElement('button');
     btnDelete.classList.add('btn', 'btn-danger', 'align-self-center');
@@ -293,6 +307,7 @@ const tasksData = [
 
     // Add buttons to btn group
     btnGroup.appendChild(btnComplete);
+    btnGroup.appendChild(btnRestore);
     btnGroup.appendChild(btnDelete);
 
     // Add markup to li
@@ -349,6 +364,7 @@ const tasksData = [
 
     const taskElement = document.querySelector(`[data-id="${id}"]`);
     const btnComplete = taskElement.querySelector('[data-action="complete"]');
+    const btnRestore = taskElement.querySelector('[data-action="restore"]');
     const uncompletedTaskRadio = document.querySelector(
       `input#uncompletedTasks`
     );
@@ -357,14 +373,46 @@ const tasksData = [
     taskElement.classList.add(...completeTaskClasses);
     // Disable the complete button
     btnComplete.setAttribute('disabled', 'disabled');
+    // Show the restore button
+    btnRestore.classList.remove('d-none');
 
     // If uncompleted task radio on tasks management toolbar is checked
-    if (uncompletedTaskRadio.checked) {
+    if (uncompletedTaskRadio && uncompletedTaskRadio.checked) {
       // Render all uncompleted tasks
       renderAllTasks(tasks, 'showUncompletedTasks');
     } else {
       // Move task element to the end of the task list
       tasksContainer.appendChild(taskElement);
+    }
+  }
+
+  // Restore a task element in DOM
+  function restoreTaskHtml(id) {
+    // Return undefined if id not received
+    if (!id) {
+      console.error('The id parameter is expected');
+      return;
+    }
+
+    const taskElement = document.querySelector(`[data-id="${id}"]`);
+    const btnComplete = taskElement.querySelector('[data-action="complete"]');
+    const btnRestore = taskElement.querySelector('[data-action="restore"]');
+    const completedTaskRadio = document.querySelector(`input#сompletedTasks`);
+
+    // Delete complete task classes to task li element
+    taskElement.classList.remove(...completeTaskClasses);
+    // Undisable the complete button
+    btnComplete.removeAttribute('disabled');
+    // Hide the restore button
+    btnRestore.classList.add('d-none');
+
+    // If completed task radio on tasks management toolbar is checked
+    if (completedTaskRadio && completedTaskRadio.checked) {
+      // Render all completed tasks
+      renderAllTasks(tasks, 'showСompletedTasks');
+    } else {
+      // Render all tasks
+      renderAllTasks(tasks);
     }
   }
 
@@ -429,6 +477,11 @@ const tasksData = [
         case 'complete':
           // Complete a task in an object and DOM
           completeTask(id);
+          break;
+
+        case 'restore':
+          // Restore a task in an object and DOM
+          restoreTask(id);
           break;
 
         case 'delete':
@@ -521,6 +574,23 @@ const tasksData = [
       tasks[id].isCompleted = true;
       // Cross out the task if it is completed
       completeTaskHtml(id);
+    }
+  }
+
+  // Restore task in object
+  function restoreTask(id) {
+    // Return undefined if id not received
+    if (!id) {
+      console.error('The id parameter is expected');
+      return;
+    }
+
+    // if task exist
+    if (tasks.hasOwnProperty(id)) {
+      // Restore task
+      tasks[id].isCompleted = false;
+      // Uncross out the task if it is not completed
+      restoreTaskHtml(id);
     }
   }
 
