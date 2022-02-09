@@ -62,6 +62,22 @@ const tasksData = [
   // Render tasks management toolbar
   renderTasksManagementToolbar();
 
+  // Tasks management toolbar UI
+  const allTasksButton = tasksManagementToolbar.querySelector(
+    'button[data-action="showAllTasks"]'
+  );
+  const uncompletedTasksButton = tasksManagementToolbar.querySelector(
+    'button[data-action="showUncompletedTasks"]'
+  );
+  const completedTasksButton = tasksManagementToolbar.querySelector(
+    'button[data-action="showCompletedTasks"]'
+  );
+  const tasksManagementButtons = [
+    allTasksButton,
+    uncompletedTasksButton,
+    completedTasksButton,
+  ];
+
   // Render all initial tasks
   renderAllTasks(tasks);
 
