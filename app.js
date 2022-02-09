@@ -438,16 +438,17 @@ const tasksData = [
 
     // If button finded check it has property 'action
     if (button && button.dataset.hasOwnProperty('action')) {
-      // Switch action
-      switch (button.dataset.action) {
-        case 'showAllTasks':
-        case 'showUncompletedTasks':
-        case 'showСompletedTasks':
-          // Render all filtered tasks
-          renderAllTasks(tasks, button.dataset.action);
-          console.log();
-          break;
-      }
+      // Return if button is already active
+      if (button.classList.contains('active')) return;
+
+      // Delete active class from tasks management toolbar buttons
+      tasksManagementButtons.forEach((button) => {
+        button.classList.remove('active');
+      });
+      // Add active class to current button
+      button.classList.add('active');
+      // Render filtered tasks
+      renderAllTasks(tasks, button.dataset.action);
     }
   }
 
