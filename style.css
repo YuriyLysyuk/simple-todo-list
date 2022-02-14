@@ -1,0 +1,8 @@
+.form-switch.switch-theme .form-check-input {
+  margin-left: 0;
+  cursor: pointer;
+}
+
+.form-switch.switch-theme .form-check-label {
+  cursor: pointer;
+}
