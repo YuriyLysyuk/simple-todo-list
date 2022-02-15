@@ -50,6 +50,7 @@ const tasksData = [
   const addNewTaskForm = document.forms['addNewTask'];
   const addNewTaskTitle = addNewTaskForm.elements['title'];
   const addNewTaskDescription = addNewTaskForm.elements['description'];
+  const switchTheme = document.querySelector('#switchTheme');
 
   // Class list
   const completeTaskClasses = [
@@ -83,6 +84,9 @@ const tasksData = [
     completedTasksButton,
   ];
 
+  // Switch color theme
+  switchColorTheme();
+
   // Render all initial tasks
   renderAllTasks(tasks);
 
@@ -97,6 +101,9 @@ const tasksData = [
     'click',
     tasksManagementToolbarHandler
   );
+
+  // Add switch theme handler
+  switchTheme.addEventListener('change', switchThemeHandler);
 
   // Render tasks management toolbar
   function renderTasksManagementToolbar() {
@@ -431,6 +438,12 @@ const tasksData = [
     }
   }
 
+  // Switch theme handler
+  function switchThemeHandler() {
+    // Switch color theme
+    switchColorTheme();
+  }
+
   // Tasks management toolbar handler
   function tasksManagementToolbarHandler(e) {
     // Find the nearest button that was clicked
@@ -664,5 +677,19 @@ const tasksData = [
     }
 
     return 0;
+  }
+
+  // Switch color theme
+  function switchColorTheme() {
+    // Check if dark theme is checked
+    const isDarkTheme = switchTheme.checked;
+
+    if (isDarkTheme) {
+      // Add dark theme class to body
+      document.body.classList.add('dark-theme');
+    } else {
+      // Else remove class dark theme class from body
+      document.body.classList.remove('dark-theme');
+    }
   }
 })(tasksData);
