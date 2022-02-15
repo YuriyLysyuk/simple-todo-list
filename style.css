@@ -1,8 +1,135 @@
+:root {
+  --white: #ffffff;
+  --black: #121214;
+
+  --indigo-100: #c5cae9;
+  --indigo-200: #9fa8da;
+  --indigo-300: #7986cb;
+  --indigo-400: #5c6bc0;
+  --indigo-600: #3949ab;
+  --indigo-800: #283593;
+  --indigo-900: #1a237e;
+
+  --gray-100: #f5f5f5;
+  --gray-350: #ced4da;
+  --gray-600: #757575;
+  --gray-700: #616161;
+  --gray-800: #424242;
+  --gray-850: #252427;
+  --gray-900: #212121;
+
+  --bg-default: var(--white);
+  --bg-default-lighter: var(--white);
+  --bg-default-inverse: var(--black);
+  --bg-brand: var(--indigo-300);
+  --bg-brand-darker: var(--indigo-400);
+  --bg-brand-inverse: var(--white);
+
+  --text-default: var(--black);
+  --text-default-inverse: var(--white);
+
+  --button-bg-brand: var(--bg-brand);
+  --button-bg-brand-hover: var(--bg-brand-darker);
+  --button-border-brand: var(--bg-brand);
+  --button-text-brand: var(--bg-brand);
+
+  --control-bg: var(--white);
+  --control-focus: var(--white);
+  --control-border: var(--gray-350);
+}
+
+.dark-theme {
+  --white: var(--gray-100);
+
+  --bg-default: var(--black);
+  --bg-default-lighter: var(--gray-850);
+  --bg-default-inverse: var(--white);
+  --bg-brand: var(--indigo-800);
+  --bg-brand-darker: var(--indigo-900);
+  --bg-brand-inverse: var(--indigo-300);
+
+  --text-default: var(--white);
+  --text-default-inverse: var(--black);
+
+  --button-bg-brand: var(--bg-brand);
+  --button-bg-brand-hover: var(--bg-brand-darker);
+  --button-border-brand: var(--bg-brand);
+  --button-text-brand: var(--white);
+
+  --control-bg: var(--gray-800);
+  --control-focus: var(--gray-600);
+  --control-border: var(--gray-700);
+}
+
+body {
+  background-color: var(--bg-default);
+  color: var(--text-default);
+}
+
+.page-header {
+  background-color: var(--bg-brand);
+  color: var(--white);
+}
+
+header h1 {
+  margin-bottom: 0;
+}
+
+.form-switch.switch-theme {
+  padding-left: 0;
+}
+
 .form-switch.switch-theme .form-check-input {
   margin-left: 0;
   cursor: pointer;
 }
 
+.form-switch.switch-theme .form-check-input,
+.form-switch.switch-theme .form-check-input:checked {
+  background-color: var(--bg-brand-inverse);
+  border-color: var(--bg-brand);
+}
+
 .form-switch.switch-theme .form-check-label {
   cursor: pointer;
+}
+
+.btn-outline-primary {
+  color: var(--button-text-brand);
+  border-color: var(--button-border-brand);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary.active:hover,
+.btn-outline-primary:active:hover {
+  background-color: var(--button-bg-brand-hover);
+  border-color: var(--button-border-brand);
+}
+
+.btn-outline-primary.active,
+.btn-outline-primary:active {
+  color: var(--white);
+  background-color: var(--button-bg-brand);
+  border-color: var(--button-border-brand);
+}
+
+.card {
+  background-color: var(--bg-default-lighter);
+}
+
+.form-control {
+  background-color: var(--control-bg);
+  border-color: var(--control-border);
+  color: var(--text-default);
+}
+
+.form-control:focus {
+  background-color: var(--control-focus);
+  color: var(--text-default);
+}
+
+.list-group-item {
+  background-color: var(--control-bg);
+  border-color: var(--control-border);
+  color: var(--text-default);
 }
