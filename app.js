@@ -84,7 +84,7 @@ const tasksData = [
     completedTasksButton,
   ];
 
-  // Switch color theme
+  // Switch initial color theme
   switchColorTheme();
 
   // Render all initial tasks
@@ -440,6 +440,17 @@ const tasksData = [
 
   // Switch theme handler
   function switchThemeHandler() {
+    // Check i dark theme is checked
+    const isDarkTheme = switchTheme.checked;
+
+    if (isDarkTheme) {
+      // Save dark color theme to localStorage
+      localStorage.setItem('colorTheme', 'dark');
+    } else {
+      // Save default color theme to localStorage
+      localStorage.setItem('colorTheme', 'default');
+    }
+
     // Switch color theme
     switchColorTheme();
   }
@@ -681,15 +692,22 @@ const tasksData = [
 
   // Switch color theme
   function switchColorTheme() {
-    // Check if dark theme is checked
-    const isDarkTheme = switchTheme.checked;
+    // Get theme name to switch or set default
+    const theme = localStorage.getItem('colorTheme') || 'default';
 
-    if (isDarkTheme) {
-      // Add dark theme class to body
-      document.body.classList.add('dark-theme');
-    } else {
-      // Else remove class dark theme class from body
-      document.body.classList.remove('dark-theme');
+    switch (theme) {
+      case 'dark':
+        // Add dark class to body
+        document.body.classList.add('dark-theme');
+        // Checked switch theme checkbox
+        switchTheme.checked = true;
+        break;
+      case 'default':
+        // Remove dark class from body
+        document.body.classList.remove('dark-theme');
+        // Unchecked switch theme checkbox
+        switchTheme.checked = false;
+        break;
     }
   }
 })(tasksData);
