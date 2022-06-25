@@ -2,7 +2,7 @@
 
 Учебный проект простого списка дел.
 
-[Демо](https://simple-todo.yuriylysyuk.com)
+[Демо](https://yuriylysyuk.github.io/simple-todo-list/)
 
 ## Функциональность
 
